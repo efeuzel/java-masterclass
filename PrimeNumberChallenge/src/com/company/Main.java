@@ -8,7 +8,7 @@ public class Main {
         for(int i = 1; i < 100; i++) {
 	        if(isPrime(i)){
                 primeCount++;
-                if(primeCount > 3) break;
+                if(primeCount > 100) break;
                 System.out.println(i + " is a prime");
             }
         }
@@ -17,7 +17,7 @@ public class Main {
     public static boolean isPrime(int number) {
         if (number == 1) return false;
 
-        for(int i = 2; i < number/2; i++) {
+        for(int i = 2; i <= (long) Math.sqrt(number); i++) {
             if (number % i == 0) return false;
         }
 
