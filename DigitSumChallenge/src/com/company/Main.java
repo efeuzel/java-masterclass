@@ -18,7 +18,7 @@ public class Main {
         while(number > 0) {
             leastSignificantDigit = number % 10;
             sumOfDigits += leastSignificantDigit;
-            number = number / 10;
+            number = number / 10; //discarding current least significant digit
         }
         return sumOfDigits;
     }
