@@ -1,6 +1,5 @@
 package com.company;
 
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.ListIterator;
 import java.util.Scanner;
@@ -8,12 +7,11 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        LinkedList<Song> playList = new LinkedList<>();
 
         Album a1 = new Album("Album 1");
         //Album a2 = new Album("Album 2");
 
-        playList.addAll(a1.getSongs());
+        LinkedList<Song> playList = new LinkedList<>(a1.getSongs());
 
         Scanner s = new Scanner(System.in);
         boolean quit = false;
