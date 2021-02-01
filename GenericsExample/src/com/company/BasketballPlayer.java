@@ -7,7 +7,6 @@ public class BasketballPlayer extends Player{
     public double getJumpHeight() {
         return jumpHeight;
     }
-
     public void setJumpHeight(double jumpHeight) {
         this.jumpHeight = jumpHeight;
     }
