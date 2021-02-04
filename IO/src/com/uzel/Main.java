@@ -1,5 +1,6 @@
 package com.uzel;
 
+import javax.sound.midi.Soundbank;
 import java.io.*;
 import java.security.Timestamp;
 import java.util.LinkedHashMap;
@@ -8,7 +9,41 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static Map<String, Integer> ages = new LinkedHashMap<>();
+    static {
+        ages.put("Efe", 31);
+        ages.put("Emra", 35);
+        ages.put("Sevcan", 32);
+        ages.put("Nursen", 31);
+    }
+
     public static void main(String[] args) {
+
+    }
+
+    public static void mainBinaryReadWirite(String[] args) {
+        try (DataOutputStream dataOutputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream("binary.dat")))) {
+            for(String s : ages.keySet()) {
+                dataOutputStream.writeUTF(s);
+                dataOutputStream.writeInt(ages.get(s));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        try (DataInputStream dataInputStream = new DataInputStream(new BufferedInputStream(new FileInputStream("binary.dat")))) {
+            while (dataInputStream.available()>0){
+                System.out.println(dataInputStream.readUTF());
+                System.out.println(dataInputStream.readInt());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public static void mainBufferedWriter(String[] args) {
 
         //Demonstrates that buffered writes are about 50% faster in this case
         long startTime = System.currentTimeMillis();
