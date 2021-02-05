@@ -1,0 +1,3 @@
+Example file line 1 in the working directory.
+Example file line 2 in the working directory.
+Example file line 3 in the working directory.
