@@ -1,6 +1,6 @@
 package com.uzel;
-import static com.uzel.ThreadColor.ANSI_BLACK;
-import static com.uzel.ThreadColor.ANSI_GREEN;
+
+import static com.uzel.ThreadColor.*;
 
 public class Main {
 
@@ -8,6 +8,7 @@ public class Main {
         System.out.println(ANSI_BLACK + "Hello from main thread.");
 
         Thread anotherThread = new AnotherThread();
+        anotherThread.setName("another thread");
         anotherThread.start(); //enable JVM to run the thread.
         // Cannot be started more than once. Create a new instance if needed.
 
@@ -22,9 +23,21 @@ public class Main {
             }
         }.start();
 
-        Thread myRunnable = new Thread(new MyRunnable());
+        Thread myRunnable = new Thread(new MyRunnable() {
+            @Override
+            public void run() {
+                System.out.println(ANSI_RED + "Hello from overridden run () of MyRunnable");
+                try {
+                    anotherThread.join(2000);
+                    System.out.println(ANSI_RED + "Another thread terminated or timed out");
+                } catch (InterruptedException e) {
+                    System.out.println(ANSI_RED + "I could not wait until another thread has finished.");
+                }
+            }
+        });
         myRunnable.start();
 
+        //anotherThread.interrupt();
         //Threads end when they return
     }
 
