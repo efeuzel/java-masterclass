@@ -1,6 +1,7 @@
 package com.uzel;
 
 import java.util.*;
+import java.util.function.Consumer;
 
 public class Main {
 
@@ -20,20 +21,12 @@ public class Main {
         employees.add(tim);
         employees.add(snow);
 
-        /*Collections.sort(employees, new Comparator<Employee>() {
-            @Override
-            public int compare(Employee o1, Employee o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });*/
-
-        Collections.sort(employees, (o1, o2) -> o1.getName().compareTo(o2.getName()));
-
-        for (Employee employee :
-                employees) {
+        Consumer<Employee> detailsPrinter = (Employee employee) -> {
             System.out.println(employee.getName());
-        }
+            System.out.println(employee.getAge());
+        };
 
+        employees.forEach(detailsPrinter);
     }
 }
 
